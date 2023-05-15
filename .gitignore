@@ -1,0 +1,7 @@
+.venv
+__pycache__
+faiss_solution_first_attempt.ipynb
+summary_embeddings.npy
+summary_embeddings_old.npy
+poetry.lock
+token.txt

@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "gazeta"
+version = "0.1.0"
+description = ""
+authors = ["Ivan Njt <ivan.demme@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "=3.9.13"
+pandas = "^2.0.1"
+numpy = "^1.24.3"
+transformers = "^4.28.1"
+datasets = "^2.12.0"
+sentence-transformers = "^2.2.2"
+faiss-cpu = "^1.7.4"
+aiogram = "^2.25.1"
+telebot = "^0.0.5"
+ipywidgets = "^8.0.6"
+jupyter = "^1.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.23.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
