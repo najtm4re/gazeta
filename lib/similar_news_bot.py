@@ -3,14 +3,10 @@ Necessary libs for bot running.
 """
 from __future__ import annotations
 from aiogram import Bot, Dispatcher, executor, types
-from embeddings import TenClosestNews
+from lib.embeddings import TenClosestNews
 
 
 class MyTelegramBot:
-    """
-    Class of our beloved telegram Bot.
-    """
-
     def __init__(self, token: str):
         self.bot = Bot(token)
         self.dispatcher = Dispatcher(self.bot)

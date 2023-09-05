@@ -47,19 +47,21 @@ class TenClosestNews:
         self.stopwords = set(nltk.corpus.stopwords.words("russian"))
         self.faiss_index = None
 
-    def create_faiss_index(self) -> faiss.swigfaiss.IndexFlatL2:
+    def create_faiss_index(self):
         """
         This method creates embeddings from df_train of gazeta dataset.
         If there's pre-made embeddings .npy file, method just loads that one.
         These embeddings are used to create faiss index list.
         """
-        current_file_path = os.path.abspath("embeddings.py")
-        current_dir_path = os.path.dirname(current_file_path)
+        current_file_path = os.path.abspath("bot_run.py")
+        current_dir_path = os.path.dirname(current_file_path) + "/data"
 
-        if os.path.exists(f"{current_dir_path}\\summary_embeddings.npy"):
-            embeddings = np.load(f"{current_dir_path}\\summary_embeddings.npy")
+        print(current_dir_path)
+
+        if os.path.exists(f"{current_dir_path}/summary_embeddings.npy"):
+            embeddings = np.load(f"{current_dir_path}/summary_embeddings.npy")
             print("=" * 79)
-            print("The embeddings were loaded from a pre-made file")
+            print("Embeddings were loaded from a pre-made file")
             print("=" * 79)
         else:
             print("=" * 79)
@@ -94,9 +96,7 @@ class TenClosestNews:
         filtered_query = " ".join(filtered_words)
         query_embedding = self.encoder.encode(filtered_query)
 
-        distances, sorted_index = self.faiss_index.search(
-            np.array([query_embedding]), 10
-        )
+        _, sorted_index = self.faiss_index.search(np.array([query_embedding]), 10)
 
         response = self.df.iloc[sorted_index[0]]
 
