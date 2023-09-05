@@ -53,10 +53,11 @@ class TenClosestNews:
         If there's pre-made embeddings .npy file, method just loads that one.
         These embeddings are used to create faiss index list.
         """
-        current_file_path = os.path.abspath("bot_run.py")
-        current_dir_path = os.path.dirname(current_file_path) + "/data"
+        current_source_file_path = os.path.abspath("bot_run.py")
+        current_dir_path = os.path.dirname(current_source_file_path) + "/data"
 
-        print(current_dir_path)
+        if not os.path.exists(current_dir_path):
+            os.mkdir(current_dir_path)
 
         if os.path.exists(f"{current_dir_path}/summary_embeddings.npy"):
             embeddings = np.load(f"{current_dir_path}/summary_embeddings.npy")
